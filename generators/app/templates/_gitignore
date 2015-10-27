@@ -1,0 +1,10 @@
+test/javasource/
+test/deployment/
+test/.classpath
+test/.project
+*.launch
+*.tmp
+*.lock
+.idea/
+
+dist/

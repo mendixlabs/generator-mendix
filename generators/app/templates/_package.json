@@ -1,5 +1,23 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+  "name": "<%= widgetName %>",
+  "version": "<%= version %>",
+  "description": "<%= description %>",
+  "private": true,
+  "dependencies": {
+  },
+  "devDependencies": {<% if (builder == 'grunt') { %>
+    "grunt": "0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-compress": "^0.14.0",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-newer": "^1.1.1"<% } if (builder == 'gulp') { %><% } %>
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "scripts": {<% if (builder == 'grunt') { %>
+    "test": "grunt test"<% } if (builder == 'gulp') { %>
+    <% } %>
+  }
 }
