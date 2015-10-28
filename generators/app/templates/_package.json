@@ -11,7 +11,9 @@
     "grunt-contrib-compress": "^0.14.0",
     "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-newer": "^1.1.1"<% } if (builder == 'gulp') { %><% } %>
+    "grunt-newer": "^1.1.1",
+    "shelljs": "^0.5.3",
+    "node-mendix-modeler-path": "https://github.com/JelteMX/node-mendix-modeler-path/archive/v1.0.0.tar.gz"<% } if (builder == 'gulp') { %><% } %>
   },
   "engines": {
     "node": ">=0.12.0"
