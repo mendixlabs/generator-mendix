@@ -6,12 +6,14 @@
 var MODELER_PATH = null;
 var MODELER_ARGS = '/file:{path}';
 
-// In case you have a different path to the test project (currently in ./test/Test.mpr) point TEST_PATH to the Test-project (full path). Otherwise, leave at null
-var TEST_PATH = null;
-
 var path = require('path'),
     mendixApp = require('node-mendix-modeler-path'),
     shelljs = require('shelljs');
+
+// In case you have a different path to the test project (currently in ./test/Test.mpr) point TEST_PATH to the Test-project (full path). Otherwise, leave at null
+var TEST_PATH = null;
+// Use this example if you want to point it to a different subfolder and specific Test project Name:
+// var TEST_PATH = path.join(shelljs.pwd(), './<custom folder>/<Custom Test Project Name>.mpr');
 
 module.exports = function (grunt) {
   var pkg = grunt.file.readJSON("package.json");
@@ -45,20 +47,20 @@ module.exports = function (grunt) {
     copy: {
       deployment: {
         files: [
-          { dest: "./test/deployment/web/widgets", cwd: "./src/", src: ["**/*"], expand: true }
+          { dest: "./test/deployment/web/Widgets", cwd: "./src/", src: ["**/*"], expand: true }
         ]
       },
       mpks: {
         files: [
-          { dest: "./test/widgets", cwd: "./dist/", src: [ pkg.name + ".mpk"], expand: true }
+          { dest: "./test/Widgets", cwd: "./dist/", src: [ pkg.name + ".mpk"], expand: true }
         ]
       }
     },
     clean: {
       build: [
           "./dist/" + pkg.name + "/*",
-          "./test/deployment/web/widgets/" + pkg.name + "/*",
-          "./test/widgets/" + pkg.name + ".mpk"
+          "./test/deployment/web/Widgets/" + pkg.name + "/*",
+          "./test/Widgets/" + pkg.name + ".mpk"
         ]            
     }
   });
@@ -71,13 +73,13 @@ module.exports = function (grunt) {
 
   grunt.registerTask("start-mendix", function () {
     var done = this.async(),
-        testProjectPath = path.join(shelljs.pwd(), '/test/Test.mpr');
+        testProjectPath = TEST_PATH !== null ? TEST_PATH : path.join(shelljs.pwd(), '/test/Test.mpr');
 
     if (MODELER_PATH !== null || (mendixApp.err === null && mendixApp.output !== null && mendixApp.output.cmd && mendixApp.output.arg)) {
       grunt.util.spawn({
         cmd: MODELER_PATH || mendixApp.output.cmd,
         args: [
-          (TEST_PATH !== null ? TEST_PATH : mendixApp.output.arg).replace('{path}', testProjectPath)
+          (MODELER_PATH !== null ? MODELER_ARGS : mendixApp.output.arg).replace('{path}', testProjectPath)
         ]
       }, function () {
         done();
