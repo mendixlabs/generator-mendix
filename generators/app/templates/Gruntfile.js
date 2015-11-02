@@ -1,14 +1,19 @@
 // Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %> :: http://github.com/<%= pkg.repository %>
 'use strict';
 
+var path = require('path'),
+    mendixApp = require('node-mendix-modeler-path'),
+    base64 = require('node-base64-image'),
+    fs = require('fs'),
+    xml2js = require('xml2js'),
+    parser = new xml2js.Parser(),
+    builder = new xml2js.Builder(),
+    shelljs = require('shelljs');
+
 // In case you seem to have trouble starting Mendix through `grunt start-mendix`, you might have to set the path to the Mendix application.
 // If it works, leave MODELER_PATH at null
 var MODELER_PATH = null;
 var MODELER_ARGS = '/file:{path}';
-
-var path = require('path'),
-    mendixApp = require('node-mendix-modeler-path'),
-    shelljs = require('shelljs');
 
 // In case you have a different path to the test project (currently in ./test/Test.mpr) point TEST_PATH to the Test-project (full path). Otherwise, leave at null
 var TEST_PATH = null;
@@ -89,6 +94,36 @@ module.exports = function (grunt) {
       console.log(mendixApp.err);
       done();
     }    
+  });
+
+  grunt.registerTask("generate-icon", function () {
+    var iconPath = path.join(shelljs.pwd(), '/icon.png'),
+        widgetXml = path.join(shelljs.pwd(), '/src/', pkg.name, '/', pkg.name + '.xml'),
+        options = {localFile: true, string: true},
+        done = this.async();
+
+    grunt.log.writeln('Processing icon');
+    
+    if (!grunt.file.exists(iconPath) || !grunt.file.exists(widgetXml)) {
+      grunt.log.error("can't generate icon");
+      return done();
+    }
+
+    base64.base64encoder(iconPath, options, function (err, image) {  
+      if (!err) {
+        var xmlOld = grunt.file.read(widgetXml);
+        parser.parseString(xmlOld, function (err, result) {
+          if (!err) {
+            if (result && result.widget && result.widget.icon) {
+              result.widget.icon[0] = image;
+            }
+            var xmlString = builder.buildObject(result);
+            grunt.file.write(widgetXml, xmlString);
+            done();
+          } 
+        });
+      } 
+    });
   });
 
   grunt.registerTask(

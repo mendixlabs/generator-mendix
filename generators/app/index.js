@@ -88,7 +88,7 @@ module.exports = yeoman.generators.Base.extend({
       },{
         type: 'input',
         name: 'github',
-        message: 'Github username',
+        message: 'Github username (optional)',
         default: '<none>',
         store: true
       }
@@ -124,6 +124,7 @@ module.exports = yeoman.generators.Base.extend({
       // Copy generic files
       this.fs.copy(this.templatePath(boilerPlatePath + '.jshintrc'), this.destinationPath('.jshintrc'));
       this.fs.copy(this.templatePath('_gitignore'), this.destinationPath('.gitignore'));
+      this.fs.copy(this.templatePath('icon.png'), this.destinationPath('icon.png'));
       this.fs.copy(this.templatePath(boilerPlatePath + 'assets/app_store_banner.png'), this.destinationPath('assets/app_store_banner.png'));
       this.fs.copy(this.templatePath(boilerPlatePath + 'assets/app_store_icon.png'), this.destinationPath('assets/app_store_icon.png'));
       this.fs.copy(this.templatePath(boilerPlatePath + 'LICENSE'), this.destinationPath('LICENSE'));
