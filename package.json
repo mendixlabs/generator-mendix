@@ -2,7 +2,7 @@
   "name": "generator-mendix",
   "version": "1.0.0",
   "description": "Mendix Widget generator",
-  "license": "MIT",
+  "license": "Apache 2",
   "main": "app/index.js",
   "repository": "JelteMX/generator-mendix",
   "author": {
@@ -21,6 +21,9 @@
     "mendix",
     "widget"
   ],
+  "bugs": {
+    "url": "https://github.com/JelteMX/generator-mendix/issues"
+  },
   "dependencies": {
     "chalk": "^1.0.0",
     "html-wiring": "^1.2.0",

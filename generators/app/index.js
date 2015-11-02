@@ -1,6 +1,6 @@
 'use strict';
 
-var packagejs = require(__dirname + '/../../package.json');
+var pkg = require(__dirname + '/../../package.json');
 var html = require("html-wiring");
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
@@ -12,27 +12,27 @@ var boilerPlatePath = '/AppStoreWidgetBoilerplate/';
 module.exports = yeoman.generators.Base.extend({
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
-
-    this.option('skip-install', {
-      desc:     'Whether dependencies should be installed',
-      defaults: false
-    });
-
-    this.option('skip-install-message', {
-      desc:     'Whether commands run should be shown',
-      defaults: false
-    });
-
-    //this.sourceRoot(path.join(path.dirname(this.resolved), 'templates/AppStoreWidgetBoilerplate'));
   },
   prompting: function () {
-    var done = this.async(),
-        questions = 15;
+    var done = this.async();
+
+    var banner = [
+      '',
+      chalk.bold.cyan('  __  ____   __') + '           _     _            _    ',
+      chalk.bold.cyan(' |  \\/  \\ \\ / /') + '          (_)   | |          | |   ',
+      chalk.bold.cyan(' | \\  / |\\ V / ') + ' __      ___  __| | __ _  ___| |_  ',
+      chalk.bold.cyan(' | |\\/| | > <  ') + ' \\ \\ /\\ / / |/ _` |/ _` |/ _ \\ __| ',
+      chalk.bold.cyan(' | |  | |/ . \\ ') + '  \\ V  V /| | (_| | (_| |  __/ |_  ',
+      chalk.bold.cyan(' |_|  |_/_/ \\_\\') + '   \\_/\\_/ |_|\\__,_|\\__, |\\___|\\__| ',
+      '                                   __/ |          ',
+      '                                  |___/           ',
+      ' Generator, version: ' + pkg.version,
+      ' Issues? Please report them at : ' + chalk.cyan(pkg.bugs.url),
+      ''
+      ].join('\n');
 
     // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the ' + chalk.red('Mendix') + ' generator!'
-    ));
+    this.log(banner);
 
     var prompts = [
       {
@@ -57,8 +57,7 @@ module.exports = yeoman.generators.Base.extend({
         type: 'input',
         name: 'description',
         message: 'Enter a description for your widget',
-        default: 'My brand new Mendix widget',
-        store: true
+        default: 'My brand new Mendix widget'
       },{
         type: 'input',
         name: 'copyright',
@@ -75,7 +74,7 @@ module.exports = yeoman.generators.Base.extend({
         type: 'input',
         name: 'version',
         validate: function (input) {
-          if (/^([0-9\.]*)$/.test(input)) return true;
+          if (/^(1\.[0-9\.]{1,3})$/.test(input)) return true;
           return 'Your version needs to be formatted as x.x.x and starts at 1.0.0. Using 1.0.0';
         },
         message: 'Initial version',
@@ -117,7 +116,7 @@ module.exports = yeoman.generators.Base.extend({
       this.widget.date = (new Date()).toLocaleDateString();
       this.widget.copyright = this.props.copyright;
       this.widget.license = this.props.license;
-      this.widget.github = this.props.github !== '<none>' ? 'http://github.com/' + this.props.github + '/' + this.widget.widgetName : false;
+      this.widget.github = this.props.github !== '<none>' ? '"http://github.com/' + this.props.github + '/' + this.widget.widgetName + '"' : false;
 
       // Using grunt (future version will include Gulp)
       this.widget.builder = 'grunt';
@@ -191,7 +190,9 @@ module.exports = yeoman.generators.Base.extend({
         {
           process: function (file) {
             var fileText = file.toString();
-            fileText = fileText.replace(/WidgetName/g, this.widget.widgetName);
+            fileText = fileText
+                          .replace(/WidgetName\.widget\.WidgetName/g, this.widget.packageName + '.widget.' + this.widget.widgetName)
+                          .replace(/WidgetName/g, this.widget.widgetName);
             return fileText;
           }.bind(this)
         }
@@ -201,8 +202,7 @@ module.exports = yeoman.generators.Base.extend({
       this.template('_package.json', 'package.json', this.widget, {});
 
       // Add Gruntfile
-      this.pkg = JSON.parse(html.readFileAsString(path.join(__dirname, '../../package.json')));
-
+      this.pkg = pkg;
       this.template('Gruntfile.js', 'Gruntfile.js', this, {});
     },
 

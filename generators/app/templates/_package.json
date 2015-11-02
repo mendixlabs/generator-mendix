@@ -14,7 +14,11 @@
     "grunt-newer": "^1.1.1",
     "shelljs": "^0.5.3",
     "node-mendix-modeler-path": "https://github.com/JelteMX/node-mendix-modeler-path/archive/v1.0.0.tar.gz"<% } if (builder == 'gulp') { %><% } %>
-  },
+  },<% if (github) { %>
+  "repository": {
+    "type": "git",
+    "url": <%= github %>
+  },<% } %>
   "engines": {
     "node": ">=0.12.0"
   },
