@@ -45,7 +45,11 @@ It will clone the boilerplate, rename your widget according to the options. It a
 
 ### Grunt
 
-The generator will include Grunt as well. This will make it possible to automate your widget development. The following Grunt tasks are implemented:
+The generator will include Grunt as well. This will make it possible to automate your widget development. 
+
+You need to have grunt installed globally (```npm install grunt-cli -g```) (this you need to do only once)
+
+The following Grunt tasks are implemented:
 
 * ``start-mendix``
 
