@@ -53,12 +53,12 @@ This watches for changes in your ``src`` folder. When a file is changed, it copi
 
 * ``grunt build``
 
-Cleans old ``.mpk`` files and creates a new one in your ``/dist`` folder
+Cleans old ``.mpk`` files and creates a new one in your ``/dist`` and ``test/widgets`` folder
 
 #####Grunt can be started from command-line, or used by Grunt-plugins for different IDE's:
 
 * [WebStorm](https://www.jetbrains.com/webstorm/help/using-grunt-task-runner.html)
-* [Brackets](https://github.com/dhategan/brackets-grunt) 
+* [Brackets](https://github.com/dhategan/brackets-grunt)
 * Visual Studio Code (has [built-in support for Grunt & Gulp](https://code.visualstudio.com/Docs/editor/tasks))
 * [Sublime Text](https://github.com/tvooo/sublime-grunt)
 * NetBeans (has [built-in support for Grunt](https://blogs.oracle.com/geertjan/entry/grunting_in_netbeans_ide))

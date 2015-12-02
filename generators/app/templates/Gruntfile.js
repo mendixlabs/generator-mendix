@@ -52,24 +52,24 @@ module.exports = function (grunt) {
     copy: {
       deployment: {
         files: [
-          { dest: "./test/deployment/web/Widgets", cwd: "./src/", src: ["**/*"], expand: true }
+          { dest: "./test/deployment/web/widgets", cwd: "./src/", src: ["**/*"], expand: true }
         ]
       },
       mpks: {
         files: [
-          { dest: "./test/Widgets", cwd: "./dist/", src: [ pkg.name + ".mpk"], expand: true }
+          { dest: "./test/widgets", cwd: "./dist/", src: [ pkg.name + ".mpk"], expand: true }
         ]
       }
     },
     clean: {
       build: [
           "./dist/" + pkg.name + "/*",
-          "./test/deployment/web/Widgets/" + pkg.name + "/*",
-          "./test/Widgets/" + pkg.name + ".mpk"
-        ]            
+          "./test/deployment/web/widgets/" + pkg.name + "/*",
+          "./test/widgets/" + pkg.name + ".mpk"
+        ]
     }
   });
-  
+
   grunt.loadNpmTasks("grunt-contrib-compress");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-watch");
@@ -93,7 +93,7 @@ module.exports = function (grunt) {
       console.error('Cannot start Modeler, see error:');
       console.log(mendixApp.err);
       done();
-    }    
+    }
   });
 
   grunt.registerTask("generate-icon", function () {
@@ -103,13 +103,13 @@ module.exports = function (grunt) {
         done = this.async();
 
     grunt.log.writeln('Processing icon');
-    
+
     if (!grunt.file.exists(iconPath) || !grunt.file.exists(widgetXml)) {
       grunt.log.error("can't generate icon");
       return done();
     }
 
-    base64.base64encoder(iconPath, options, function (err, image) {  
+    base64.base64encoder(iconPath, options, function (err, image) {
       if (!err) {
         var xmlOld = grunt.file.read(widgetXml);
         parser.parseString(xmlOld, function (err, result) {
@@ -120,9 +120,9 @@ module.exports = function (grunt) {
             var xmlString = builder.buildObject(result);
             grunt.file.write(widgetXml, xmlString);
             done();
-          } 
+          }
         });
-      } 
+      }
     });
   });
 
@@ -134,12 +134,12 @@ module.exports = function (grunt) {
 
   grunt.registerTask(
     "clean build",
-    "Compiles all the assets and copies the files to the build directory.", 
+    "Compiles all the assets and copies the files to the build directory.",
     [ "clean", "compress", "copy" ]
   );
 
   grunt.registerTask(
-    "build", 
+    "build",
     [ "clean build" ]
   );
 };
