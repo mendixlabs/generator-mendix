@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>generator-mendix by JelteMX</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>generator-mendix</h1>
+          <h2>Yeoman generator for Mendix widgets</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/JelteMX/generator-mendix/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/JelteMX/generator-mendix/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/JelteMX/generator-mendix" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="generator-mendix-" class="anchor" href="#generator-mendix-" aria-hidden="true"><span class="octicon octicon-link"></span></a>generator-mendix <a href="https://travis-ci.org/JelteMX/generator-mendix"><img src="https://secure.travis-ci.org/JelteMX/generator-mendix.png?branch=master" alt="Build Status"></a>
+</h1>
+
+<blockquote>
+<p><a href="http://yeoman.io">Yeoman</a> generator for Mendix widgets.</p>
+</blockquote>
+
+<h2>
+<a id="about" class="anchor" href="#about" aria-hidden="true"><span class="octicon octicon-link"></span></a>About</h2>
+
+<p>This generator uses the Yeoman scaffolding tool to let you quickly create a <a href="https://world.mendix.com/display/public/howto50/Custom+Widget+Development">Mendix widget</a> based on the latest <a href="https://github.com/mendix/AppStoreWidgetBoilerplate">AppStoreWidgetBoilerPlate</a>.</p>
+
+<h3>
+<a id="prerequisites" class="anchor" href="#prerequisites" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prerequisites</h3>
+
+<p>First, you need to have NodeJs installed. After that, you need Yeoman and the generator</p>
+
+<div class="highlight highlight-source-shell"><pre>npm install -g yo generator-mendix</pre></div>
+
+<h3>
+<a id="use-the-generator" class="anchor" href="#use-the-generator" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use the generator</h3>
+
+<h5>
+<a id="1-start-the-generator" class="anchor" href="#1-start-the-generator" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.) Start the generator:</h5>
+
+<div class="highlight highlight-source-shell"><pre>yo mendix</pre></div>
+
+<h5>
+<a id="2-this-will-show-you-the-following-screen" class="anchor" href="#2-this-will-show-you-the-following-screen" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.) This will show you the following screen:</h5>
+
+<p>--&gt; add image &lt;--</p>
+
+<p>The following options are asked:</p>
+
+<ul>
+<li>name</li>
+<li>package</li>
+<li>description</li>
+<li>copyright</li>
+<li>license</li>
+<li>version</li>
+<li>author</li>
+<li>Github username (optional)</li>
+</ul>
+
+<p>The default value is shown between <code>(</code> <code>)</code></p>
+
+<h5>
+<a id="3-now-your-widget-will-be-created-using-the-options-and-the-boilerplate" class="anchor" href="#3-now-your-widget-will-be-created-using-the-options-and-the-boilerplate" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.) Now your widget will be created using the options and the boilerplate.</h5>
+
+<p>It will clone the boilerplate, rename your widget according to the options. It also includes a <code>Gruntfile.js</code> and <code>package.json</code> for development purposes (see below)</p>
+
+<h3>
+<a id="grunt" class="anchor" href="#grunt" aria-hidden="true"><span class="octicon octicon-link"></span></a>Grunt</h3>
+
+<p>The generator will include Grunt as well. This will make it possible to automate your widget development. </p>
+
+<p>You need to have grunt installed globally (<code>npm install grunt-cli -g</code>) (this you need to do only once)</p>
+
+<p>The following Grunt tasks are implemented:</p>
+
+<ul>
+<li><code>start-mendix</code></li>
+</ul>
+
+<p>This will try to open the Modeler using the included test-project.</p>
+
+<ul>
+<li>
+<code>watch</code> (alias for default, just run <code>grunt</code>)</li>
+</ul>
+
+<p>This watches for changes in your <code>src</code> folder. When a file is changed, it copies the change to the deployment-folder (so you do not have to restart your project when changing files <strong>(with the exception of <code>.xml</code> files)</strong>). It also automatically creates a <code>.mpk</code> file in your <code>/dist</code> and <code>test/widgets</code> folder.</p>
+
+<ul>
+<li><code>build</code></li>
+</ul>
+
+<p>Cleans old <code>.mpk</code> files and creates a new one in your <code>/dist</code> folder</p>
+
+<h5>
+<a id="grunt-can-be-started-from-command-line-or-used-by-grunt-plugins-for-different-ides" class="anchor" href="#grunt-can-be-started-from-command-line-or-used-by-grunt-plugins-for-different-ides" aria-hidden="true"><span class="octicon octicon-link"></span></a>Grunt can be started from command-line, or used by Grunt-plugins for different IDE's:</h5>
+
+<ul>
+<li><a href="https://www.jetbrains.com/webstorm/help/using-grunt-task-runner.html">WebStorm</a></li>
+<li>
+<a href="https://github.com/dhategan/brackets-grunt">Brackets</a> </li>
+<li>Visual Studio Code (has <a href="https://code.visualstudio.com/Docs/editor/tasks">built-in support for Grunt &amp; Gulp</a>)</li>
+<li><a href="https://github.com/tvooo/sublime-grunt">Sublime Text</a></li>
+<li>NetBeans (has <a href="https://blogs.oracle.com/geertjan/entry/grunting_in_netbeans_ide">built-in support for Grunt</a>)</li>
+</ul>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO:</h2>
+
+<ul>
+<li>Gulp integration</li>
+<li>Add JSHint (Grunt/Gulp) or ESLint (advantage of checking the AST for deprecated client API's)</li>
+<li>Add Analytics</li>
+<li>Check for updates</li>
+<li>Move package.json &amp; Gruntfile.js to Boilerplate</li>
+</ul>
+
+<h2>
+<a id="issues" class="anchor" href="#issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Issues</h2>
+
+<p>Issues can be reported on <a href="https://github.com/JelteMX/generator-mendix/issues">Github</a>.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Apache 2</p>
+        </section>
+
+        <footer>
+          generator-mendix is maintained by <a href="https://github.com/JelteMX">JelteMX</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
