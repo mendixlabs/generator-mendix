@@ -14,7 +14,7 @@ First, you need to have NodeJs installed. After that, you need Yeoman and the ge
 npm install -g yo generator-mendix
 ```
 
-### Use the generator
+### Usage
 
 #####1.) Start the generator:
 
@@ -22,11 +22,7 @@ npm install -g yo generator-mendix
 yo mendix
 ```
 
-#####2.) This will show you the following screen:
-
---> add image <--
-
-The following options are asked:
+#####2.) The generator will ask you to provide the following information about your widget:
 
 * name
 * package
@@ -37,29 +33,25 @@ The following options are asked:
 * author
 * Github username (optional)
 
-The default value is shown between ``(`` ``)``
-
-#####3.) Now your widget will be created using the options and the boilerplate.
+#####3.) Your widget will be created using the options and the boilerplate.
 
 It will clone the boilerplate, rename your widget according to the options. It also includes a ``Gruntfile.js`` and ``package.json`` for development purposes (see below)
 
 ### Grunt
 
-The generator will include Grunt as well. This will make it possible to automate your widget development. 
+The generator will include Grunt to automate your widget development. [Make sure you have Grunt installed](http://gruntjs.com/getting-started).
 
-You need to have grunt installed globally (```npm install grunt-cli -g```) (this you need to do only once)
+The following Grunt tasks are available:
 
-The following Grunt tasks are implemented:
-
-* ``start-mendix``
+* ``grunt start-mendix``
 
 This will try to open the Modeler using the included test-project.
 
-* ``watch`` (alias for default, just run ``grunt``)
+* ``grunt watch`` (this is actually an alias for default, so you can run ``grunt`` without adding this taskname)
 
 This watches for changes in your ``src`` folder. When a file is changed, it copies the change to the deployment-folder (so you do not have to restart your project when changing files **(with the exception of ``.xml`` files)**). It also automatically creates a ``.mpk`` file in your ``/dist`` and ``test/widgets`` folder.
 
-* ``build``
+* ``grunt build``
 
 Cleans old ``.mpk`` files and creates a new one in your ``/dist`` folder
 
@@ -75,8 +67,6 @@ Cleans old ``.mpk`` files and creates a new one in your ``/dist`` folder
 
 * Gulp integration
 * Add JSHint (Grunt/Gulp) or ESLint (advantage of checking the AST for deprecated client API's)
-* Add Analytics
-* Check for updates
 * Move package.json & Gruntfile.js to Boilerplate
 
 ## Issues
