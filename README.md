@@ -1,4 +1,4 @@
-# generator-mendix [![Build Status](https://secure.travis-ci.org/JelteMX/generator-mendix.png?branch=master)](https://travis-ci.org/JelteMX/generator-mendix)
+# generator-mendix [![Build Status](https://secure.travis-ci.org/mendix/generator-mendix.png?branch=master)](https://travis-ci.org/JelteMX/generator-mendix)
 
 > [Yeoman](http://yeoman.io) generator for Mendix widgets.
 
@@ -71,8 +71,4 @@ Cleans old ``.mpk`` files and creates a new one in your ``/dist`` and ``test/wid
 
 ## Issues
 
-Issues can be reported on [Github](https://github.com/JelteMX/generator-mendix/issues).
-
-## License
-
-Apache 2
+Issues can be reported on [Github](https://github.com/mendix/generator-mendix/issues).
