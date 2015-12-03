@@ -8,7 +8,7 @@ This generator uses the Yeoman scaffolding tool to let you quickly create a [Men
 
 ### Prerequisites
 
-First, you need to have NodeJs installed. After that, you need Yeoman and the generator
+First, you need to have NodeJs installed. After that, you need to install Yeoman and the generator:
 
 ```bash
 npm install -g yo generator-mendix
@@ -66,7 +66,7 @@ Cleans old ``.mpk`` files and creates a new one in your ``/dist`` and ``test/wid
 ## TODO:
 
 * Gulp integration
-* Add JSHint (Grunt/Gulp) or ESLint (advantage of checking the AST for deprecated client API's)
+* Add JSHint (Grunt/Gulp)
 * Move package.json & Gruntfile.js to Boilerplate
 
 ## Issues
