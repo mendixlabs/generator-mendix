@@ -1,4 +1,4 @@
-# generator-mendix [![Build Status](https://secure.travis-ci.org/mendix/generator-mendix.png?branch=master)](https://travis-ci.org/JelteMX/generator-mendix)
+# generator-mendix [![Build Status](https://secure.travis-ci.org/mendix/generator-mendix.png?branch=master)](https://travis-ci.org/mendix/generator-mendix)
 
 > [Yeoman](http://yeoman.io) generator for Mendix widgets.
 
