@@ -21,8 +21,10 @@
   ],
   "keywords": [
     "yeoman-generator",
+    "scaffold",
     "mendix",
-    "widget"
+    "widget",
+    "scaffold"
   ],
   "bugs": {
     "url": "https://github.com/mendix/generator-mendix/issues"
