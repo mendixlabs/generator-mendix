@@ -16,13 +16,13 @@ npm install -g yo generator-mendix
 
 ### Usage
 
-#####1.) Start the generator:
+##### 1.) Start the generator:
 
 ```bash
 yo mendix
 ```
 
-#####2.) The generator will ask you to provide the following information about your widget:
+##### 2.) The generator will ask you to provide the following information about your widget:
 
 * name
 * package
@@ -33,7 +33,7 @@ yo mendix
 * author
 * Github username (optional)
 
-#####3.) Your widget will be created using the options and the boilerplate.
+##### 3.) Your widget will be created using the options and the boilerplate.
 
 It will clone the boilerplate, rename your widget according to the options. It also includes a ``Gruntfile.js`` and ``package.json`` for development purposes (see below)
 
@@ -55,7 +55,7 @@ This watches for changes in your ``src`` folder. When a file is changed, it copi
 
 Cleans old ``.mpk`` files and creates a new one in your ``/dist`` and ``test/widgets`` folder
 
-#####Grunt can be started from command-line, or used by Grunt-plugins for different IDE's:
+### Grunt can be started from command-line, or used by Grunt-plugins for different IDE's:
 
 * [WebStorm](https://www.jetbrains.com/webstorm/help/using-grunt-task-runner.html)
 * [Brackets](https://github.com/dhategan/brackets-grunt)
