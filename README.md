@@ -45,7 +45,7 @@ The generator will include Grunt to automate your widget development. [Make sure
 
 The following Grunt tasks are available:
 
-* ``grunt start-mendix``
+* ``grunt start-modeler``
 
 This will try to open the Modeler using the included test-project.
 
