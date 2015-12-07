@@ -1,11 +1,8 @@
 'use strict';
 
 var pkg = require(__dirname + '/../../package.json');
-var html = require("html-wiring");
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
-var path = require('path');
-var yosay = require('yosay');
 
 var boilerPlatePath = '/AppStoreWidgetBoilerplate/';
 
@@ -39,7 +36,7 @@ module.exports = yeoman.generators.Base.extend({
         type: 'input',
         name: 'widgetName',
         validate: function (input) {
-          if (/^([a-zA-Z]*)$/.test(input)) return true;
+          if (/^([a-zA-Z]*)$/.test(input)) { return true; }
           return 'Your widget name cannot contain special characters or a blank space, using the default name instead (use Ctrl+C to abort)';
         },
         message: 'What is name of your widget?',
@@ -48,7 +45,7 @@ module.exports = yeoman.generators.Base.extend({
         type: 'input',
         name: 'packageName',
         validate: function (input) {
-          if (/^([a-zA-Z]*)$/.test(input)) return true;
+          if (/^([a-zA-Z]*)$/.test(input)) { return true; }
           return 'Your package name cannot contain special characters or a blank space, using the default name instead (use Ctrl+C to abort)';
         },
         message: 'What is name of your package?',
@@ -74,7 +71,7 @@ module.exports = yeoman.generators.Base.extend({
         type: 'input',
         name: 'version',
         validate: function (input) {
-          if (/^(1\.[0-9\.]{1,3})$/.test(input)) return true;
+          if (/^(1\.[0-9\.]{1,3})$/.test(input)) { return true; }
           return 'Your version needs to be formatted as x.x.x and starts at 1.0.0. Using 1.0.0';
         },
         message: 'Initial version',
@@ -111,7 +108,7 @@ module.exports = yeoman.generators.Base.extend({
       this.widget.widgetName = this.props.widgetName;
       this.widget.packageName = this.props.packageName;
       this.widget.description = this.props.description;
-      this.widget.version = this.props.version; 
+      this.widget.version = this.props.version;
       this.widget.author = this.props.author;
       this.widget.date = (new Date()).toLocaleDateString();
       this.widget.copyright = this.props.copyright;
@@ -134,23 +131,23 @@ module.exports = yeoman.generators.Base.extend({
 
       // Copy files based on WidgetName
       this.fs.copy(
-        this.templatePath(boilerPlatePath + 'src/WidgetName/lib/jquery-1.11.2.js'), 
+        this.templatePath(boilerPlatePath + 'src/WidgetName/lib/jquery-1.11.2.js'),
         this.destinationPath('src/' + this.widget.widgetName + '/lib/jquery-1.11.2.js')
       );
 
       this.fs.copy(
-        this.templatePath(boilerPlatePath + 'src/WidgetName/widget/template/WidgetName.html'), 
+        this.templatePath(boilerPlatePath + 'src/WidgetName/widget/template/WidgetName.html'),
         this.destinationPath('src/' + this.widget.widgetName + '/widget/template/' + this.widget.widgetName + '.html')
       );
 
       this.fs.copy(
-        this.templatePath(boilerPlatePath + 'src/WidgetName/widget/ui/WidgetName.css'), 
+        this.templatePath(boilerPlatePath + 'src/WidgetName/widget/ui/WidgetName.css'),
         this.destinationPath('src/' + this.widget.widgetName + '/widget/ui/' + this.widget.widgetName + '.css')
       );
 
       // Rename references in widget main JS
       this.fs.copy(
-        this.templatePath(boilerPlatePath + 'src/WidgetName/widget/WidgetName.js'), 
+        this.templatePath(boilerPlatePath + 'src/WidgetName/widget/WidgetName.js'),
         this.destinationPath('src/' + this.widget.widgetName + '/widget/' + this.widget.widgetName + '.js'),
         {
           process: function (file) {
@@ -171,7 +168,7 @@ module.exports = yeoman.generators.Base.extend({
 
       // Rename references package.xml
       this.fs.copy(
-        this.templatePath(boilerPlatePath + 'src/package.xml'), 
+        this.templatePath(boilerPlatePath + 'src/package.xml'),
         this.destinationPath('src/package.xml'),
         {
           process: function (file) {
@@ -186,7 +183,7 @@ module.exports = yeoman.generators.Base.extend({
 
       // Rename references WidgetName
       this.fs.copy(
-        this.templatePath(boilerPlatePath + 'src/WidgetName/WidgetName.xml'), 
+        this.templatePath(boilerPlatePath + 'src/WidgetName/WidgetName.xml'),
         this.destinationPath('src/' + this.widget.widgetName + '/' + this.widget.widgetName + '.xml'),
         {
           process: function (file) {
