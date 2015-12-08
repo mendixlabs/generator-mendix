@@ -1,4 +1,4 @@
-// Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %> :: http://github.com/<%= pkg.repository %>
+// Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %> :: http://github.com/<%= pkg.repository.url %>
 'use strict';
 
 var path = require('path'),
@@ -25,7 +25,7 @@ module.exports = function (grunt) {
     watch: {
       autoDeployUpdate: {
         'files': [ './src/**/*' ],
-        'tasks': [ 'newer:copy', 'compress' ],
+        'tasks': [ 'compress', 'newer:copy' ],
         options: {
           debounceDelay: 250,
           livereload: true
