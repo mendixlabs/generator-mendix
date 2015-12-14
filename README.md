@@ -47,7 +47,7 @@ The following Grunt tasks are available:
 
 * ``grunt start-modeler``
 
-This will try to open the Modeler using the included test-project.
+This will try to open the Modeler using the included test-project. (Older versions of the Gruntfile will use ``grunt start-mendix``)
 
 * ``grunt watch`` (this is actually an alias for default, so you can run ``grunt`` without adding this taskname)
 
