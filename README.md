@@ -13,7 +13,7 @@ This generator uses the Yeoman scaffolding tool to let you quickly create a [Men
 First, you need to have NodeJs installed. After that, you need to install Yeoman and the generator:
 
 ```bash
-npm install -g yo generator-mendix
+npm install -g yo generator-mendix grunt-cli
 ```
 
 ### Usage
