@@ -27,7 +27,6 @@ yo mendix
 ##### 2.) The generator will ask you to provide the following information about your widget:
 
 * name
-* package
 * description
 * copyright
 * license

@@ -1,32 +1,39 @@
 'use strict';
 
 var pkg = require(__dirname + '/../../package.json');
+var semver = require('semver');
+var fs = require('extfs');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 
 var boilerPlatePath = '/AppStoreWidgetBoilerplate/';
 
+var banner = [
+  '',
+  chalk.bold.cyan('  __  ____   __') + '           _     _            _    ',
+  chalk.bold.cyan(' |  \\/  \\ \\ / /') + '          (_)   | |          | |   ',
+  chalk.bold.cyan(' | \\  / |\\ V / ') + ' __      ___  __| | __ _  ___| |_  ',
+  chalk.bold.cyan(' | |\\/| | > <  ') + ' \\ \\ /\\ / / |/ _` |/ _` |/ _ \\ __| ',
+  chalk.bold.cyan(' | |  | |/ . \\ ') + '  \\ V  V /| | (_| | (_| |  __/ |_  ',
+  chalk.bold.cyan(' |_|  |_/_/ \\_\\') + '   \\_/\\_/ |_|\\__,_|\\__, |\\___|\\__| ',
+  '                                   __/ |          ',
+  '                                  |___/           ',
+  ' Generator, version: ' + pkg.version,
+  ' Issues? Please report them at : ' + chalk.cyan(pkg.bugs.url),
+  ''
+].join('\n');
+
 module.exports = yeoman.generators.Base.extend({
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
+    if (!fs.isEmptySync(this.destinationRoot())) {
+      this.log(banner);
+      this.log(chalk.red('Error: Current folder does not seem to be empty, the generator needs to be run in an empty folder. Please create an empty folder first.\n'));
+      process.exit(0);
+    }
   },
   prompting: function () {
     var done = this.async();
-
-    var banner = [
-      '',
-      chalk.bold.cyan('  __  ____   __') + '           _     _            _    ',
-      chalk.bold.cyan(' |  \\/  \\ \\ / /') + '          (_)   | |          | |   ',
-      chalk.bold.cyan(' | \\  / |\\ V / ') + ' __      ___  __| | __ _  ___| |_  ',
-      chalk.bold.cyan(' | |\\/| | > <  ') + ' \\ \\ /\\ / / |/ _` |/ _` |/ _ \\ __| ',
-      chalk.bold.cyan(' | |  | |/ . \\ ') + '  \\ V  V /| | (_| | (_| |  __/ |_  ',
-      chalk.bold.cyan(' |_|  |_/_/ \\_\\') + '   \\_/\\_/ |_|\\__,_|\\__, |\\___|\\__| ',
-      '                                   __/ |          ',
-      '                                  |___/           ',
-      ' Generator, version: ' + pkg.version,
-      ' Issues? Please report them at : ' + chalk.cyan(pkg.bugs.url),
-      ''
-      ].join('\n');
 
     // Have Yeoman greet the user.
     this.log(banner);
@@ -37,19 +44,10 @@ module.exports = yeoman.generators.Base.extend({
         name: 'widgetName',
         validate: function (input) {
           if (/^([a-zA-Z]*)$/.test(input)) { return true; }
-          return 'Your widget name cannot contain special characters or a blank space, using the default name instead (use Ctrl+C to abort)';
+          return 'Your widget can only contain letters (a-z & A-Z). Please provide a valid name';
         },
         message: 'What is name of your widget?',
         default: 'MyWidget'
-      },{
-        type: 'input',
-        name: 'packageName',
-        validate: function (input) {
-          if (/^([a-zA-Z]*)$/.test(input)) { return true; }
-          return 'Your package name cannot contain special characters or a blank space, using the default name instead (use Ctrl+C to abort)';
-        },
-        message: 'What is name of your package?',
-        default: 'MyPackage'
       },{
         type: 'input',
         name: 'description',
@@ -71,7 +69,9 @@ module.exports = yeoman.generators.Base.extend({
         type: 'input',
         name: 'version',
         validate: function (input) {
-          if (/^(1\.[0-9\.]{1,3})$/.test(input)) { return true; }
+          if (semver.valid(input) && semver.satisfies(input, '>=1.0.0')) {
+            return true;
+          }
           return 'Your version needs to be formatted as x.x.x and starts at 1.0.0. Using 1.0.0';
         },
         message: 'Initial version',
@@ -106,7 +106,7 @@ module.exports = yeoman.generators.Base.extend({
       // Define widget variables
       this.widget = {};
       this.widget.widgetName = this.props.widgetName;
-      this.widget.packageName = this.props.packageName;
+      this.widget.packageName = this.props.widgetName;
       this.widget.description = this.props.description;
       this.widget.version = this.props.version;
       this.widget.author = this.props.author;
