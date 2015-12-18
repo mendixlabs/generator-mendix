@@ -1,3 +1,4 @@
+/*jshint -W108*/
 'use strict';
 
 var pkg = require(__dirname + '/../../package.json');
