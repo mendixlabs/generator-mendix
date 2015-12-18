@@ -297,5 +297,10 @@ module.exports = yeoman.generators.Base.extend({
   install: function () {
     this.log('Copied files, now running ' + chalk.cyan('npm install') + ' to install development dependencies');
     this.npmInstall();
+  },
+
+  end: function () {
+    this.log('\n\n> I will now run ' + chalk.cyan('grunt build') + ' to build the mpk < \n\n');
+    this.spawnCommand('grunt', ['build']);
   }
 });
