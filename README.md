@@ -10,7 +10,7 @@ This generator uses the Yeoman scaffolding tool to let you quickly create a [Men
 
 ### Prerequisites
 
-First, you need to have NodeJs installed. After that, you need to install Yeoman and the generator:
+First, you need to have NodeJs installed. After that, you need to install Yeoman, Mendix Widget generator and Grunt:
 
 ```bash
 npm install -g yo generator-mendix grunt-cli
@@ -51,6 +51,10 @@ This will try to open the Modeler using the included test-project. (Older versio
 * ``grunt watch`` (this is actually an alias for default, so you can run ``grunt`` without adding this taskname)
 
 This watches for changes in your ``src`` folder. When a file is changed, it copies the change to the deployment-folder (so you do not have to restart your project when changing files **(with the exception of ``.xml`` files)**). It also automatically creates a ``.mpk`` file in your ``/dist`` and ``test/widgets`` folder.
+
+* ``grunt version``
+
+This will let you set the version of your widget, the ``package.xml``, without editing it yourself.
 
 * ``grunt build``
 
