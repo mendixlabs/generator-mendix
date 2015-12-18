@@ -18,7 +18,7 @@ npm install -g yo generator-mendix grunt-cli
 
 ### Usage
 
-##### 1.) Start the generator:
+##### 1.) Start the generator in the folder you want to create a widget:
 
 ```bash
 yo mendix
