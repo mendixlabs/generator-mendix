@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "mocha": "*",
+    "mock-spawn": "^0.2.6",
     "string-template": "^0.2.1"
   }
 }

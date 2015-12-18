@@ -300,7 +300,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    this.log('\n\n> I will now run ' + chalk.cyan('grunt build') + ' to build the mpk < \n\n');
+    this.log('\n\n> I will now run ' + chalk.cyan('grunt build') + ' to build the mpk (do this before starting the modeler)< \n\n');
     this.spawnCommand('grunt', ['build']);
   }
 });

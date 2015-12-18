@@ -1,14 +1,20 @@
 /*global it,before,describe*/
+/*jshint -W108,-W069*/
 'use strict';
 
 var path = require('path');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 var format = require('string-template');
+var mockSpawn = require('mock-spawn');
 
 describe('Mendix generator:', function () {
 
   var customWidgetName = 'TESTWIDGET';
+  var mySpawn = mockSpawn();
+  require('child_process').spawn = mySpawn;
+
+  mySpawn.setDefault(mySpawn.simple(0, ''));
 
   before(function (done) {
     helpers.run(path.join(__dirname, '../generators/app'))
