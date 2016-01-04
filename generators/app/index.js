@@ -43,9 +43,9 @@ module.exports = yeoman.generators.Base.extend({
         this.current.name = srcFolderContent[0];
       }
       if (!extfs.isEmptySync(this.destinationPath('src/package.xml'))) {
+        this.isNew = false;
         var pkgXml = fs.readFileSync(this.destinationPath('src/package.xml')).toString();
         parser.parseString(pkgXml, function (err, result) {
-          this.isNew = false;
           if (err) {
             this.log('Error: ' + err);
             process.exit(0);
@@ -193,7 +193,7 @@ module.exports = yeoman.generators.Base.extend({
       this.widget.date = (new Date()).toLocaleDateString();
       this.widget.copyright = this.props.copyright;
       this.widget.license = this.props.license;
-      this.widget.github = this.props.github !== '<none>' ? '"http://github.com/' + this.props.github + '/' + this.widget.widgetName + '"' : false;
+      this.widget.github = (this.props.github !== '<none>' && typeof this.props.github !== 'undefined') ? '"http://github.com/' + this.props.github + '/' + this.widget.widgetName + '"' : false;
 
       // Using grunt (future version will include Gulp)
       this.widget.builder = 'grunt';
