@@ -42,6 +42,16 @@ module.exports = yeoman.generators.Base.extend({
       if (srcFolderContent.length === 1) {
         this.current.name = srcFolderContent[0];
       }
+      if (!extfs.isEmptySync(this.destinationPath('package.json'))) {
+        try {
+          var destPkg = JSON.parse(fs.readFileSync(this.destinationPath('package.json')).toString());
+          this.current.description = destPkg.description;
+          this.current.author = destPkg.author;
+          this.current.copyright = destPkg.copyright;
+          this.current.license = destPkg.license;
+          this.current.repository = destPkg.repository ? JSON.stringify(destPkg.repository) : false;
+        } catch (e) {}
+      }
       if (!extfs.isEmptySync(this.destinationPath('src/package.xml'))) {
         this.isNew = false;
         var pkgXml = fs.readFileSync(this.destinationPath('src/package.xml')).toString();
@@ -51,7 +61,11 @@ module.exports = yeoman.generators.Base.extend({
             process.exit(0);
           }
           if (result.package.clientModule[0]["$"]["version"]) {
-            this.current.version = result.package.clientModule[0]["$"]["version"];
+            var version = result.package.clientModule[0]["$"]["version"];
+            if (version.split(".").length === 2) {
+              version += ".0";
+            }
+            this.current.version = version;
           }
           done();
         }.bind(this));
@@ -91,7 +105,7 @@ module.exports = yeoman.generators.Base.extend({
         type: 'input',
         name: 'copyright',
         message: 'Add a copyright',
-        default: '<Your Company> 2015',
+        default: '<Your Company> 2016',
         store: true
       },{
         type: 'input',
@@ -187,21 +201,21 @@ module.exports = yeoman.generators.Base.extend({
       this.widget = {};
       this.widget.widgetName = this.props.widgetName;
       this.widget.packageName = this.props.widgetName;
-      this.widget.description = this.props.description;
+      this.widget.description = this.props.description || this.current.description;
       this.widget.version = this.props.version;
-      this.widget.author = this.props.author;
+      this.widget.author = this.props.author || this.current.author;
       this.widget.date = (new Date()).toLocaleDateString();
-      this.widget.copyright = this.props.copyright;
-      this.widget.license = this.props.license;
+      this.widget.copyright = this.props.copyright || this.current.copyright;
+      this.widget.license = this.props.license || this.current.license;
+      this.widget.generatorVersion = pkg.version;
       this.widget.github = (this.props.github !== '<none>' && typeof this.props.github !== 'undefined') ? '"http://github.com/' + this.props.github + '/' + this.widget.widgetName + '"' : false;
+      this.widget.repository = this.current.repository ||  false;
 
       // Using grunt (future version will include Gulp)
       this.widget.builder = 'grunt';
 
       if (this.isNew) {
         // Copy generic files
-        this.fs.copy(this.templatePath(boilerPlatePath + '.jshintrc'), this.destinationPath('.jshintrc'));
-        this.fs.copy(this.templatePath('_gitignore'), this.destinationPath('.gitignore'));
         this.fs.copy(this.templatePath('icon.png'), this.destinationPath('icon.png'));
         this.fs.copy(this.templatePath(boilerPlatePath + 'assets/app_store_banner.png'), this.destinationPath('assets/app_store_banner.png'));
         this.fs.copy(this.templatePath(boilerPlatePath + 'assets/app_store_icon.png'), this.destinationPath('assets/app_store_icon.png'));
@@ -277,6 +291,12 @@ module.exports = yeoman.generators.Base.extend({
           }
         );
       }
+
+      // Gitignore
+      this.fs.copy(this.templatePath('_gitignore'), this.destinationPath('.gitignore'));
+
+      // jshint
+      this.fs.copy(this.templatePath(boilerPlatePath + '.jshintrc'), this.destinationPath('.jshintrc'));
 
       // Package.JSON
       this.template('_package.json', 'package.json', this.widget, {});

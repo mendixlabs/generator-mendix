@@ -2,6 +2,8 @@
   "name": "<%= widgetName %>",
   "version": "<%= version %>",
   "description": "<%= description %>",
+  "license": "<%= license %>",
+  "author": "<%= author %>",
   "private": true,
   "dependencies": {
   },
@@ -21,9 +23,15 @@
   "repository": {
     "type": "git",
     "url": <%= github %>
-  },<% } %>
+  },<% } %><% if (repository) { %>
+  "repository": <%= repository %>,<% } %>
   "engines": {
     "node": ">=0.12.0"
+  },
+  "generatorVersion": "<%= generatorVersion %>",
+  "paths": {
+    "testProjectFolder": "./test/",
+    "testProjectFileName": "Test.mpr"
   },
   "scripts": {<% if (builder == 'grunt') { %>
     "test": "grunt test"<% } if (builder == 'gulp') { %>
