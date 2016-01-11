@@ -91,9 +91,7 @@ module.exports = function (grunt) {
         },
         clean: {
             build: [
-                path.join(shelljs.pwd(), "dist", pkg.name, "/*"),
-                path.join(TEST_WIDGETS_DEPLOYMENT_FOLDER, pkg.name, "/*"),
-                path.join(TEST_WIDGETS_FOLDER, pkg.name + ".mpk")
+                path.join(shelljs.pwd(), "dist", pkg.name, "/*")
             ]
         }
     });
