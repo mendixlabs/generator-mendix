@@ -6,6 +6,7 @@ test/.project
 *.tmp
 *.lock
 .idea/
+*.bak
 
 dist/
 
