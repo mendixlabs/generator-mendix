@@ -93,6 +93,14 @@ module.exports = function (grunt) {
             build: [
                 path.join(shelljs.pwd(), "dist", pkg.name, "/*")
             ]
+        },
+        csslint: {
+            strict: {
+              options: {
+                import: 2
+              },
+              src: ["src/" + pkg.name + "/widget/ui/*.css"]
+            }
         }
     });
 
@@ -101,6 +109,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.loadNpmTasks("grunt-newer");
+    grunt.loadNpmTasks("grunt-contrib-csslint");
 
     grunt.registerTask("start-modeler", function () {
         var done = this.async();
