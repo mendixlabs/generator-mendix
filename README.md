@@ -8,7 +8,7 @@
 
 This generator uses the Yeoman scaffolding tool to let you quickly create a [Mendix widget](https://world.mendix.com/display/public/howto50/Custom+Widget+Development) based on the latest [AppStoreWidgetBoilerPlate](https://github.com/mendix/AppStoreWidgetBoilerplate).
 
-### Prerequisites
+### Prerequisites (you only have to do this ONCE)
 
 First, you need to have NodeJs installed. After that, you need to install Yeoman, Mendix Widget generator and Grunt:
 
@@ -55,6 +55,18 @@ This watches for changes in your ``src`` folder. When a file is changed, it copi
 * ``grunt version``
 
 This will let you set the version of your widget, the ``package.xml``, without editing it yourself.
+
+* ``grunt folders``
+
+Grunt uses the settings in package.json to determine which folders it uses. If, for example, you use this to develop a widget in your project, you can change the folder in package.json:
+
+```json
+...
+    "testProjectFolder": "./test/",
+...
+```
+
+and then check if the path is correct by running the ``grunt folders`` task
 
 * ``grunt build``
 
