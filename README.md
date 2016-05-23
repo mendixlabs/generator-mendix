@@ -42,21 +42,21 @@ It will clone the boilerplate, rename your widget according to the options. It a
 
 The generator will include Grunt to automate your widget development. [Make sure you have Grunt installed](http://gruntjs.com/getting-started).
 
-The following Grunt tasks are available:
+The following Grunt tasks can be started by typing ``grunt <TASKNAME>``:
 
-* ``grunt start-modeler``
+* ``start-modeler``
 
 This will try to open the Modeler using the included test-project. (Older versions of the Gruntfile will use ``grunt start-mendix``)
 
-* ``grunt watch`` (this is actually an alias for default, so you can run ``grunt`` without adding this taskname)
+* ``watch`` (this is actually an alias for default, so you can run ``grunt`` without adding this taskname)
 
 This watches for changes in your ``src`` folder. When a file is changed, it copies the change to the deployment-folder (so you do not have to restart your project when changing files **(with the exception of ``.xml`` files)**). It also automatically creates a ``.mpk`` file in your ``/dist`` and ``test/widgets`` folder.
 
-* ``grunt version``
+* ``version``
 
 This will let you set the version of your widget, the ``package.xml``, without editing it yourself.
 
-* ``grunt folders``
+* ``folders``
 
 Grunt uses the settings in package.json to determine which folders it uses. If, for example, you use this to develop a widget in your project, you can change the folder in package.json:
 
@@ -68,9 +68,17 @@ Grunt uses the settings in package.json to determine which folders it uses. If, 
 
 and then check if the path is correct by running the ``grunt folders`` task
 
-* ``grunt build``
+* ``build``
 
 Cleans old ``.mpk`` files and creates a new one in your ``/dist`` and ``test/widgets`` folder
+
+### Using Grunt in a widget respository/project you downloaded.
+
+If you download or clone one of our repositories that has a ``Gruntfile.js`` and ``package.json`` included, you need to install the dependencies first to be able to run Grunt:
+
+1. Make sure you open the root folder in your command-line/terminal window
+2. Run ``npm install`` to install the dependencies
+3. Now you can use the Grunt tasks as described in the previous point
 
 ### Grunt can be started from command-line, or used by Grunt-plugins for different IDE's:
 
@@ -84,7 +92,6 @@ Cleans old ``.mpk`` files and creates a new one in your ``/dist`` and ``test/wid
 
 * Gulp integration
 * Add JSHint (Grunt/Gulp)
-* Move package.json & Gruntfile.js to Boilerplate
 
 ## Issues
 
