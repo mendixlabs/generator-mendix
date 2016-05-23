@@ -23,13 +23,14 @@ var path = require("path"),
         xmldec:     { standalone: null, encoding: "utf-8" }
     }),
     shelljs = require("shelljs"),
-    pkg = require("./package.json");
+    pkg = require("./package.json"),
+    currentFolder = shelljs.pwd().toString();
 
-var TEST_PATH = path.join(shelljs.pwd(), "/test/Test.mpr");
-var WIDGET_XML = path.join(shelljs.pwd(), "/src/", pkg.name, "/", pkg.name + ".xml");
-var PACKAGE_XML = path.join(shelljs.pwd(), "/src/package.xml");
-var TEST_WIDGETS_FOLDER = path.join(shelljs.pwd(), "./test/widgets");
-var TEST_WIDGETS_DEPLOYMENT_FOLDER = path.join(shelljs.pwd(), "./test/deployment/web/widgets");
+var TEST_PATH = path.join(currentFolder, "/test/Test.mpr");
+var WIDGET_XML = path.join(currentFolder, "/src/", pkg.name, "/", pkg.name + ".xml");
+var PACKAGE_XML = path.join(currentFolder, "/src/package.xml");
+var TEST_WIDGETS_FOLDER = path.join(currentFolder, "./test/widgets");
+var TEST_WIDGETS_DEPLOYMENT_FOLDER = path.join(currentFolder, "./test/deployment/web/widgets");
 
 /**
  * If you want to use a custom folder for the test project, make sure these are added to package.json:
@@ -43,7 +44,7 @@ var TEST_WIDGETS_DEPLOYMENT_FOLDER = path.join(shelljs.pwd(), "./test/deployment
 if (pkg.paths && pkg.paths.testProjectFolder && pkg.paths.testProjectFileName) {
     var folder = pkg.paths.testProjectFolder;
     if (folder.indexOf(".") === 0) {
-        folder = path.join(shelljs.pwd(), folder);
+        folder = path.join(currentFolder, folder);
     }
     TEST_PATH = path.join(folder, pkg.paths.testProjectFileName);
     TEST_WIDGETS_FOLDER = path.join(folder, "/widgets");
@@ -91,7 +92,7 @@ module.exports = function (grunt) {
         },
         clean: {
             build: [
-                path.join(shelljs.pwd(), "dist", pkg.name, "/*")
+                path.join(currentFolder, "dist", pkg.name, "/*")
             ]
         },
         csslint: {
@@ -169,7 +170,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask("generate-icon", function () {
-        var iconPath = path.join(shelljs.pwd(), "/icon.png"),
+        var iconPath = path.join(currentFolder, "/icon.png"),
             options = {localFile: true, string: true},
             done = this.async();
 

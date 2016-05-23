@@ -10,7 +10,8 @@ var parser = new xml2js.Parser();
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 
-var boilerPlatePath = '/AppStoreWidgetBoilerplate/';
+var boilerPlatePath = 'AppStoreWidgetBoilerplate/';
+
 var banner = [
   '',
   chalk.bold.cyan('  __  ____   __') + '           _     _            _    ',
@@ -26,9 +27,9 @@ var banner = [
   ''
 ].join('\n');
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = yeoman.Base.extend({
   constructor: function () {
-    yeoman.generators.Base.apply(this, arguments);
+    yeoman.Base.apply(this, arguments);
     var done = this.async();
     this.isNew = true;
 
@@ -175,28 +176,31 @@ module.exports = yeoman.generators.Base.extend({
     ];
 
     if (this.isNew) {
-      this.prompt(promptsNew, function (props) {
-        this.props = props;
-        // To access props later use this.props.someOption;
-        done();
-      }.bind(this));
+      this
+        .prompt(promptsNew)
+        .then(function (props) {
+          this.props = props;
+          // To access props later use this.props.someOption;
+          done();
+        }.bind(this));
     } else {
       this.log(chalk.bold.red(' The directory is not empty. If you are creating a new widget, please open the generator in an empty folder (Press Ctrl+C to abort)\n\n'));
-      this.prompt(promptsUpgrade, function (props) {
-        this.props = props;
-        if (!props.upgrade) {
-          process.exit(0);
-        } else {
-          done();
-        }
-      }.bind(this));
+      this
+        .prompt(promptsUpgrade)
+        .then(function (props) {
+          this.props = props;
+          if (!props.upgrade) {
+            process.exit(0);
+          } else {
+            done();
+          }
+        }.bind(this));
     }
 
   },
 
   writing: {
     app: function () {
-
       // Define widget variables
       this.widget = {};
       this.widget.widgetName = this.props.widgetName;

@@ -16,6 +16,8 @@ First, you need to have NodeJs installed. After that, you need to install Yeoman
 npm install -g yo generator-mendix grunt-cli
 ```
 
+Make sure you have the latest version of ``yo``. The version we work with currently is 1.8.3 (which you can check by running ``yo --version``)
+
 ### Usage
 
 ##### 1.) Start the generator in the folder you want to create a widget:
@@ -72,6 +74,10 @@ and then check if the path is correct by running the ``grunt folders`` task
 
 Cleans old ``.mpk`` files and creates a new one in your ``/dist`` and ``test/widgets`` folder
 
+* ``csslint``
+
+Lints through all CSS files that are in the ``widget/ui`` folder and checks for errors
+
 ### Using Grunt in a widget respository/project you downloaded.
 
 If you download or clone one of our repositories that has a ``Gruntfile.js`` and ``package.json`` included, you need to install the dependencies first to be able to run Grunt:
@@ -92,6 +98,10 @@ If you download or clone one of our repositories that has a ``Gruntfile.js`` and
 
 * Gulp integration
 * Add JSHint (Grunt/Gulp)
+
+## Troubleshooting
+
+
 
 ## Issues
 
