@@ -1,4 +1,4 @@
-# generator-mendix [![Build Status](https://secure.travis-ci.org/mendix/generator-mendix.png?branch=master)](https://travis-ci.org/mendix/generator-mendix) [![npm version](https://badge.fury.io/js/generator-mendix.svg)](http://badge.fury.io/js/generator-mendix)
+# generator-mendix [![Build Status](https://secure.travis-ci.org/mendix/generator-mendix.png?branch=master)](https://travis-ci.org/mendix/generator-mendix) [![npm version](https://badge.fury.io/js/generator-mendix.svg)](http://badge.fury.io/js/generator-mendix) [![DAVID](https://david-dm.org/mendix/generator-mendix.svg)](https://david-dm.org/mendix/generator-mendix) [![Development Dependency Status](https://david-dm.org/mendix/generator-mendix/dev-status.svg?theme=shields.io)](https://david-dm.org/mendix/generator-mendix#info=devDependencies)
 
 [![NPM](https://nodei.co/npm/generator-mendix.svg?downloads=true&stars=true)](https://nodei.co/npm/generator-mendix/)
 
