@@ -50,8 +50,10 @@ module.exports = yeoman.Base.extend({
           this.current.author = destPkg.author;
           this.current.copyright = destPkg.copyright;
           this.current.license = destPkg.license;
-          this.current.repository = destPkg.repository ? JSON.stringify(destPkg.repository) : false;
-        } catch (e) {}
+        } catch (e) {
+          console.error("Error reading package.json. Please check the file or remove it before you run the generator again. Error: " + e.toString());
+          process.exit(1);
+        }
       }
       if (!extfs.isEmptySync(this.destinationPath('src/package.xml'))) {
         this.isNew = false;
@@ -131,12 +133,6 @@ module.exports = yeoman.Base.extend({
         message: 'Author',
         default: '<You>',
         store: true
-      },{
-        type: 'input',
-        name: 'github',
-        message: 'Github username (optional)',
-        default: '<none>',
-        store: true
       }
     ];
 
@@ -212,8 +208,6 @@ module.exports = yeoman.Base.extend({
       this.widget.copyright = this.props.copyright || this.current.copyright;
       this.widget.license = this.props.license || this.current.license;
       this.widget.generatorVersion = pkg.version;
-      this.widget.github = (this.props.github !== '<none>' && typeof this.props.github !== 'undefined') ? '"http://github.com/' + this.props.github + '/' + this.widget.widgetName + '"' : false;
-      this.widget.repository = this.current.repository ||  false;
 
       // Using grunt (future version will include Gulp)
       this.widget.builder = 'grunt';

@@ -19,13 +19,8 @@
     "shelljs": "^0.7.0",
     "xml2js": "^0.4.15",
     "semver": "^5.1.0",
-    "node-mendix-modeler-path": "https://github.com/JelteMX/node-mendix-modeler-path/archive/v1.0.0.tar.gz"<% } if (builder == 'gulp') { %><% } %>
-  },<% if (github) { %>
-  "repository": {
-    "type": "git",
-    "url": <%= github %>
-  },<% } %><% if (repository) { %>
-  "repository": <%= repository %>,<% } %>
+    "node-mendix-modeler-path": "https://github.com/JelteMX/node-mendix-modeler-path/archive/v1.0.0.tar.gz"
+  },<% } if (builder == 'gulp') { %><% } %>
   "engines": {
     "node": ">=0.12.0"
   },
