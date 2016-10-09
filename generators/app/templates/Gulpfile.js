@@ -57,7 +57,7 @@ gulp.task("version:xml", function () {
 
 gulp.task("version:json", function () {
     return gulp.src("./package.json")
-        .pipe(gulpif(typeof argv.n !== "undefined", jsonTransform(function(data, file) {
+        .pipe(gulpif(typeof argv.n !== "undefined", jsonTransform(function(data) {
             data.version = argv.n;
             return data;
         }, 2)))
