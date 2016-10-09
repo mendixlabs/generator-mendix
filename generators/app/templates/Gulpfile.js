@@ -82,6 +82,5 @@ gulp.task("modeler", function (cb) {
     widgetBuilderHelper.runmodeler(MODELER_PATH, MODELER_ARGS, paths.TEST_PATH, cb);
 });
 
-gulp.task("run", ["modeler"]);
 gulp.task("build", ["compress"]);
 gulp.task("version", ["version:xml", "version:json"]);

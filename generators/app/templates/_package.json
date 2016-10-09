@@ -42,6 +42,10 @@
   },
   "scripts": {<% if (builder == 'grunt') { %>
     "build": "grunt build"<% } if (builder == 'gulp') { %>
-    "build": "gulp build"<% } %>
+    "build": "node ./node_modules/gulp/bin/gulp build",
+    "version": "node ./node_modules/gulp/bin/gulp version",
+    "icon": "node ./node_modules/gulp/bin/gulp icon",
+    "folders": "node ./node_modules/gulp/bin/gulp folders",
+    "modeler": "node ./node_modules/gulp/bin/gulp modeler"<% } %>
   }
 }
