@@ -1,4 +1,4 @@
-/*global it,before,beforeEach,describe*/
+/*global it,before,describe*/
 /*jshint -W108,-W069*/
 'use strict';
 
