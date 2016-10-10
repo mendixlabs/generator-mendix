@@ -60,6 +60,60 @@ function promptsNew () {
         }
       ],
       default: 0
+    },
+    /*{
+      // NOT IMPLEMENTED YET
+      type: 'confirm',
+      name: 'useSass',
+      message: 'Do you want to use SASS? (will add _sass folder)',
+      default: false,
+      store: true,
+      when: function (props) {
+        return props.builder === 'gulp';
+      },
+      store: true
+    },*/
+    {
+      type: 'list',
+      name: 'boilerplate',
+      message: 'Which template do you want to use for the widget?',
+      choices: [{
+          name: 'AppStoreWidgetBoilerplate, from Github (recommended for beginners)',
+          value: 'appstore'
+        },{
+          name: 'Empty widget (recommended for more experienced developers)',
+          value: 'empty'
+        }
+      ],
+      store: true
+    },{
+      type: 'checkbox',
+      name: 'widgetoptions',
+      message: 'Which of the following things apply?',
+      choices: [{
+          name: 'Use templates (add template mixin and template.html)',
+          value: 'templates',
+          checked: false
+        },{
+          name: 'Use jQuery (not recommended, only use it if external libraries need it)',
+          value: 'jquery',
+          checked: false
+        }/*
+        // NOT IMPLEMENTED YET,{
+          name: 'Add Execute Microflow shorthand',
+          value: 'execMf',
+          checked: false
+        },{
+          name: 'Add validation (will add an attribute property and example methods, will use templates)',
+          value: 'validation',
+          checked: false
+        }
+        */
+      ],
+      when: function (props) {
+        return props.boilerplate === 'empty';
+      },
+      store: true
     }
   ];
 }

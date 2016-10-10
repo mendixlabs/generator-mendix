@@ -1,3 +1,3 @@
-require('./lib/testrunner.js')('gulp');
-require('./lib/testrunner.js')('grunt');
+require('./lib/testrunner-appstore-boilerplate.js')('gulp');
+require('./lib/testrunner-appstore-boilerplate.js')('grunt');
 require('./tests/not-empty-dir.js')
