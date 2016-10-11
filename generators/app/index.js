@@ -93,7 +93,6 @@ module.exports = yeoman.Base.extend({
         .prompt(promptTexts.promptsNew())
         .then(function (props) {
           this.props = props;
-          // To access props later use this.props.someOption;
           done();
         }.bind(this));
     } else {
@@ -108,7 +107,6 @@ module.exports = yeoman.Base.extend({
           }
         }.bind(this));
     }
-
   },
 
   writing: {

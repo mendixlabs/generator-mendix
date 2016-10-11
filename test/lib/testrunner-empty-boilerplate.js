@@ -112,7 +112,8 @@ module.exports = function (builder, prompt) {
           [jsFile, format('dojo/text!{0}/widget/template/{0}.html', [promptOps.widgetName])],
           [jsFile, 'dijit/_TemplatedMixin'],
           [jsFile, 'widgetTemplate'],
-          [jsFile, 'templateString: widgetTemplate']
+          [jsFile, 'templateString: widgetTemplate'],
+          [jsFile, 'widgetBase: null,']
         ];
         if (templates) {
           assert.fileContent(contents);
