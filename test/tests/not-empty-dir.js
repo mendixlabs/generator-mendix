@@ -10,7 +10,7 @@ var mockSpawn = require('mock-spawn');
 var fs = require("fs-extra");
 var builder = 'gulp';
 
-describe(format('Generator with {0} on non-empty folder:', builder), function () {
+describe(format('Generator on non-empty folder:\n', builder), function () {
 
   var mySpawn = mockSpawn();
   require('child_process').spawn = mySpawn;

@@ -14,7 +14,7 @@ module.exports = function (builder) {
   promptOps.widgetName = 'TestWidgetForTHE' + builder;
   promptOps.builder = builder;
 
-  describe(format('Generator with {0}:', builder), function () {
+  describe(format('Generator with {0}:\n', builder), function () {
 
     var mySpawn = mockSpawn();
     require('child_process').spawn = mySpawn;
