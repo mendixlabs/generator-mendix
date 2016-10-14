@@ -33,7 +33,7 @@ gulp.task("clean", function () {
     return del([
         paths.WIDGET_TEST_DEST,
         paths.WIDGET_DIST_DEST
-    ]);
+    ], { force: true });
 });
 
 gulp.task("compress", ["clean"], function () {
