@@ -183,6 +183,7 @@ Please report your issues [here](https://github.com/mendix/generator-mendix/issu
 
 ## TODO:
 
+* Add LICENSE files [request](https://github.com/mendix/generator-mendix/issues/19)
 * Add JSHint (Grunt/Gulp)
 * Add SASS support (add ``_sass`` folder that will output CSS to your src folder)
 
