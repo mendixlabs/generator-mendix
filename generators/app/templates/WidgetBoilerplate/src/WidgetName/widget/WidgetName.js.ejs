@@ -1,0 +1,74 @@
+define([
+    "dojo/_base/declare",
+    "mxui/widget/_WidgetBase",
+<% if (options.templates) { %>    "dijit/_TemplatedMixin",<%
+
+} %>
+    "mxui/dom",
+    "dojo/dom",
+    "dojo/dom-prop",
+    "dojo/dom-geometry",
+    "dojo/dom-class",
+    "dojo/dom-style",
+    "dojo/dom-construct",
+    "dojo/_base/array",
+    "dojo/_base/lang",
+    "dojo/text",
+    "dojo/html",
+    "dojo/_base/event",
+<% if (options.jquery) { %>    "<%= widgetName %>/lib/jquery-1.11.2",<% } %>
+<% if (options.templates) { %>    "dojo/text!<%= widgetName %>/widget/template/<%= widgetName %>.html"<% } %>
+], function (declare, _WidgetBase, _TemplatedMixin, dom, dojoDom, dojoProp, dojoGeometry, dojoClass, dojoStyle, dojoConstruct, dojoArray, dojoLang, dojoText, dojoHtml, dojoEvent<% if (options.jquery) { %>, _jQuery<% } %><% if (options.templates) { %>, widgetTemplate<% } %>) {
+    "use strict";
+<% if (options.jquery) { %>
+    var $ = _jQuery.noConflict(true);
+<% } %>
+    return declare("<%= packageName %>.widget.<%= widgetName %>", [ _WidgetBase<% if (options.templates) { %>, _TemplatedMixin<% } %> ], {
+<% if (options.templates) { %>
+        templateString: widgetTemplate,
+<% } %>
+<% if (options.templates) { %>
+        widgetBase: null,
+<% } %>
+        // Internal variables.
+        _handles: null,
+        _contextObj: null,
+
+        constructor: function () {
+            this._handles = [];
+        },
+
+        postCreate: function () {
+            logger.debug(this.id + ".postCreate");
+        },
+
+        update: function (obj, callback) {
+            logger.debug(this.id + ".update");
+
+            this._contextObj = obj;
+            this._updateRendering(callback);
+        },
+
+        resize: function (box) {
+          logger.debug(this.id + ".resize");
+        },
+
+        uninitialize: function () {
+          logger.debug(this.id + ".uninitialize");
+        },
+
+        _updateRendering: function (callback) {
+            logger.debug(this.id + "._updateRendering");
+
+            if (this._contextObj !== null) {
+                dojoStyle.set(this.domNode, "display", "block");
+            } else {
+                dojoStyle.set(this.domNode, "display", "none");
+            }
+
+            mendix.lang.nullExec(callback);
+        }
+    });
+});
+
+require(["<%= packageName %>/widget/<%= widgetName %>"]);

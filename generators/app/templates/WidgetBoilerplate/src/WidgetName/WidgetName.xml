@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="WidgetName.widget.WidgetName" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>WidgetName</name>
+    <description>The description of this widget.</description>
+
+    <icon />
+
+    <properties>
+        <property key="dummyKey" type="string" required="false" defaultValue="">
+            <caption>Dummy key</caption>
+            <category>Appearance</category>
+            <description>This key was added to make the widget work in the Modeler (needs atleast 1 key). Please change/remove this one</description>
+        </property>
+    </properties>
+</widget>
