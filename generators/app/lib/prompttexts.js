@@ -50,7 +50,7 @@ function promptsNew () {
     },{
       type: 'list',
       name: 'builder',
-      message: 'Which build script do you want to use?',
+      message: 'Which task runner do you want to use for development?',
       choices: [{
           name: 'Gulp (recommended)',
           value: 'gulp'
