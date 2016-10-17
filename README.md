@@ -8,11 +8,15 @@
 
 This generator uses the Yeoman scaffolding tool to let you quickly create a [Mendix widget](https://world.mendix.com/display/public/howto50/Custom+Widget+Development) based on the latest [AppStoreWidgetBoilerPlate](https://github.com/mendix/AppStoreWidgetBoilerplate). You can either use the full boilerplate with example code, or choose to use an empty widget.
 
+If you want to see a short demo (this uses the older 1.x widget generator and only Grunt), please look at our [webinar](http://ww2.mendix.com/expert-webinar-developing-widgets.html)
+
 ---
 
 ## Prerequisites _(you only have to do this once)_
 
-First, you need to have NodeJs installed. After that, you need to install Yeoman and the Mendix Widget generator:
+First, you need to have [Node.js](https://nodejs.org/en/) installed. (We recommend a 4.x LTS version, the widget is tested against version 4 to 6). After that, you need to install Yeoman and the Mendix Widget generator:
+
+Open a command-line window (Press Win+R and type ``cmd`` or use Powershell)
 
 ```bash
   npm install -g yo generator-mendix
