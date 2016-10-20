@@ -110,7 +110,7 @@ module.exports = function (builder, prompt) {
       it (format('Based on input, templates should{0} be required in the widget', (templates ? '' : ' NOT')), function () {
         var contents = [
           [jsFile, format('dojo/text!{0}/widget/template/{0}.html', [promptOps.widgetName])],
-          [jsFile, 'dijit/_TemplatedMixin'],
+          [jsFile, '_TemplatedMixin'],
           [jsFile, 'widgetTemplate'],
           [jsFile, 'templateString: widgetTemplate'],
           [jsFile, 'widgetBase: null,']
