@@ -66,7 +66,13 @@ define([
                 dojoStyle.set(this.domNode, "display", "none");
             }
 
-            mendix.lang.nullExec(callback);
+            this._executeCallback(callback);
+        },
+
+        _executeCallback: function (cb) {
+          if (cb && typeof cb === "function") {
+            cb();
+          }
         }
     });
 });
