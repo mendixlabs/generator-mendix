@@ -69,7 +69,7 @@ gulp.task("icon", function (cb) {
     console.log("\nUsing this file to create a base64 string: " + gutil.colors.cyan(icon));
     gulp.src(icon)
         .pipe(intercept(function (file) {
-            console.log("\nCopy the following to your " + pkg.name + ".xml (after description):\n\n" + gutil.colors.cyan("<icon>") + file.contents.toString("base64") + gutil.colors.cyan("<\\icon>") + "\n");
+            console.log("\nCopy the following to your " + pkg.name + ".xml (after description):\n\n" + gutil.colors.cyan("<icon>") + file.contents.toString("base64") + gutil.colors.cyan("<\/icon>") + "\n");
             cb();
         }));
 });
