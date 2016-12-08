@@ -18,7 +18,7 @@ define([
     "dojo/_base/event",
 <% if (options.jquery) { %>    "<%= widgetName %>/lib/jquery-1.11.2",<% } %>
 <% if (options.templates) { %>    "dojo/text!<%= widgetName %>/widget/template/<%= widgetName %>.html"<% } %>
-], function (declare, _WidgetBase<% if (options.templates) { %>, _TemplatedMixin<% } %>, dom, dojoDom, dojoProp, dojoGeometry, dojoClass, dojoStyle, dojoConstruct, dojoArray, dojoLang, dojoText, dojoHtml, dojoEvent<% if (options.jquery) { %>, _jQuery<% } %><% if (options.templates) { %>, widgetTemplate<% } %>) {
+], function (declare, _WidgetBase<% if (options.templates) { %>, _TemplatedMixin<% } %>, dom, dojoDom, dojoProp, dojoGeometry, dojoClass, dojoStyle, dojoConstruct, dojoArray, lang, dojoText, dojoHtml, dojoEvent<% if (options.jquery) { %>, _jQuery<% } %><% if (options.templates) { %>, widgetTemplate<% } %>) {
     "use strict";
 <% if (options.jquery) { %>
     var $ = _jQuery.noConflict(true);
