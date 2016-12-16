@@ -18,7 +18,8 @@ var gulp = require("gulp"),
     jsonTransform = require("gulp-json-transform"),
     intercept = require("gulp-intercept"),
     argv = require("yargs").argv,
-    widgetBuilderHelper = require("widgetbuilder-gulp-helper");
+    widgetBuilderHelper = require("widgetbuilder-gulp-helper"),
+    jsValidate = require("gulp-jsvalidate");
 
 var pkg = require("./package.json"),
     paths = widgetBuilderHelper.generatePaths(pkg),
@@ -45,6 +46,7 @@ gulp.task("compress", ["clean"], function () {
 
 gulp.task("copy:js", function () {
     return gulp.src(["./src/**/*.js"])
+        .pipe(jsValidate())
         .pipe(newer(paths.TEST_WIDGETS_DEPLOYMENT_FOLDER))
         .pipe(gulp.dest(paths.TEST_WIDGETS_DEPLOYMENT_FOLDER));
 });
