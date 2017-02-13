@@ -66,13 +66,36 @@ define([
                 dojoStyle.set(this.domNode, "display", "none");
             }
 
-            this._executeCallback(callback);
+            this._executeCallback(callback, "_updateRendering");
         },
 
-        _executeCallback: function (cb) {
-          if (cb && typeof cb === "function") {
-            cb();
-          }
+        // Shorthand for running a microflow
+        _execMf: function (mf, guid, cb) {
+            logger.debug(this.id + "._execMf");
+            if (mf && guid) {
+                mx.ui.action(mf, {
+                    params: {
+                        applyto: "selection",
+                        guids: [guid]
+                    },
+                    callback: lang.hitch(this, function (objs) {
+                        if (cb && typeof cb === "function") {
+                            cb(objs);
+                        }
+                    }),
+                    error: function (error) {
+                        console.debug(error.description);
+                    }
+                }, this);
+            }
+        },
+
+        // Shorthand for executing a callback, adds logging to your inspector
+        _executeCallback: function (cb, from) {
+            logger.debug(this.id + "._executeCallback" + (from ? " from " + from : ""));
+            if (cb && typeof cb === "function") {
+                cb();
+            }
         }
     });
 });
