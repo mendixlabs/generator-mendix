@@ -2,12 +2,12 @@
 "use strict";
 var semver = require('semver');
 
-function promptsNew () {
-  return [
+module.exports = {
+  promptsNew: () => [
     {
       type: 'input',
       name: 'widgetName',
-      validate: function (input) {
+      validate: input => {
         if (/^([a-zA-Z]*)$/.test(input)) { return true; }
         return 'Your widget can only contain letters (a-z & A-Z). Please provide a valid name';
       },
@@ -33,7 +33,7 @@ function promptsNew () {
     },{
       type: 'input',
       name: 'version',
-      validate: function (input) {
+      validate: input => {
         if (semver.valid(input) && semver.satisfies(input, '>=1.0.0')) {
           return true;
         }
@@ -110,16 +110,12 @@ function promptsNew () {
         }
         */
       ],
-      when: function (props) {
-        return props.boilerplate === 'empty';
-      },
+      when: props => props.boilerplate === 'empty',
       store: true
     }
-  ];
-}
+  ],
 
-function promptsUpgrade (current) {
-  return [
+  promptsUpgrade: current => [
     {
       type: 'confirm',
       name: 'upgrade',
@@ -128,19 +124,17 @@ function promptsUpgrade (current) {
     },{
       type: 'input',
       name: 'widgetName',
-      validate: function (input) {
+      validate: input => {
         if (/^([a-zA-Z]*)$/.test(input)) { return true; }
         return 'Your widget can only contain letters (a-z & A-Z). Please provide a valid name';
       },
       message: 'What is name of your widget? (Do not change this, unless you know what you are doing)',
       default: current.name,
-      when: function (props) {
-        return props.upgrade;
-      }
+      when: props => props.upgrade
     },{
       type: 'input',
       name: 'version',
-      validate: function (input) {
+      validate: input => {
         if (semver.valid(input) && semver.satisfies(input, '>=1.0.0')) {
           return true;
         }
@@ -148,9 +142,7 @@ function promptsUpgrade (current) {
       },
       message: 'Enter your current version (package.xml) or the default version',
       default: current.version,
-      when: function (props) {
-        return props.upgrade;
-      }
+      when: props => props.upgrade
     },{
       type: 'list',
       name: 'builder',
@@ -165,10 +157,5 @@ function promptsUpgrade (current) {
       ],
       default: 0
     }
-  ];
-}
-
-module.exports = {
-  promptsNew: promptsNew,
-  promptsUpgrade: promptsUpgrade
+  ]
 };

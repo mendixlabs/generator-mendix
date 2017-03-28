@@ -4,22 +4,20 @@
 var chalk = require('chalk');
 
 module.exports = {
-  getBanner: function (pkg) {
-    return [
-      '',
-      chalk.bold.cyan('  __  ____   __') + '           _     _            _    ',
-      chalk.bold.cyan(' |  \\/  \\ \\ / /') + '          (_)   | |          | |   ',
-      chalk.bold.cyan(' | \\  / |\\ V / ') + ' __      ___  __| | __ _  ___| |_  ',
-      chalk.bold.cyan(' | |\\/| | > <  ') + ' \\ \\ /\\ / / |/ _` |/ _` |/ _ \\ __| ',
-      chalk.bold.cyan(' | |  | |/ . \\ ') + '  \\ V  V /| | (_| | (_| |  __/ |_  ',
-      chalk.bold.cyan(' |_|  |_/_/ \\_\\') + '   \\_/\\_/ |_|\\__,_|\\__, |\\___|\\__| ',
-      '                                   __/ |          ',
-      '                                  |___/           ',
-      ' Generator, version: ' + pkg.version,
-      ' Issues? Please report them at : ' + chalk.cyan(pkg.bugs.url),
-      ''
-    ].join('\n');
-  },
+  getBanner: pkg => [
+    '',
+    chalk.bold.cyan('  __  ____   __') + '           _     _            _    ',
+    chalk.bold.cyan(' |  \\/  \\ \\ / /') + '          (_)   | |          | |   ',
+    chalk.bold.cyan(' | \\  / |\\ V / ') + ' __      ___  __| | __ _  ___| |_  ',
+    chalk.bold.cyan(' | |\\/| | > <  ') + ' \\ \\ /\\ / / |/ _` |/ _` |/ _ \\ __| ',
+    chalk.bold.cyan(' | |  | |/ . \\ ') + '  \\ V  V /| | (_| | (_| |  __/ |_  ',
+    chalk.bold.cyan(' |_|  |_/_/ \\_\\') + '   \\_/\\_/ |_|\\__,_|\\__, |\\___|\\__| ',
+    '                                   __/ |          ',
+    '                                  |___/           ',
+    ' Generator, version: ' + pkg.version,
+    ' Issues? Please report them at : ' + chalk.cyan(pkg.bugs.url),
+    ''
+  ].join('\n'),
 
   PACKAGE_READ_ERROR: "Error reading package.json. Please check the file or remove it before you run the generator again. Error: ",
   DIR_NOT_EMPTY_ERROR: chalk.bold.red(' The directory is not empty and we cannot detect a widget.\n If you are creating a new widget, please open the generator in an empty folder.\n If you want to upgrade a widget, make sure you are using the generator in a widget folder.\n'),
