@@ -1,6 +1,6 @@
 {
   "name": "generator-mendix",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Mendix Widget generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -38,11 +38,11 @@
   },
   "devDependencies": {
     "fs-extra": "^0.30.0",
-    "lodash": "^4.16.4",
-    "mocha": "3.1.0",
+    "lodash": "^4.17.4",
+    "mocha": "^3.1.0",
     "mock-spawn": "^0.2.6",
     "string-template": "1.0.0",
-    "yeoman-assert": "^2.2.1",
-    "yeoman-test": "^1.5.1"
+    "yeoman-assert": "^2.2.3",
+    "yeoman-test": "^1.6.0"
   }
 }
