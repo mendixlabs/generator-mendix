@@ -14,6 +14,7 @@ var gulp = require("gulp"),
     del = require("del"),
     newer = require("gulp-newer"),
     gutil = require("gulp-util"),
+    plumber = require("gulp-plumber"),
     gulpif = require("gulp-if"),
     jsonTransform = require("gulp-json-transform"),
     intercept = require("gulp-intercept"),
@@ -47,6 +48,15 @@ gulp.task("compress", ["clean"], function () {
 
 gulp.task("copy:js", function () {
     return gulp.src(["./src/**/*.js"])
+        .pipe(plumber(function (error) {
+            var msg = gutil.colors.red("Error");
+            if (error.fileName) {
+                msg += gutil.colors.red(" in ") + gutil.colors.cyan(error.fileName);
+            }
+            msg += " : " + gutil.colors.cyan(error.message);
+            gutil.log(msg);
+            this.emit("end");
+        }))
         .pipe(jsValidate())
         .pipe(newer(paths.TEST_WIDGETS_DEPLOYMENT_FOLDER))
         .pipe(gulp.dest(paths.TEST_WIDGETS_DEPLOYMENT_FOLDER));
