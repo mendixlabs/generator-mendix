@@ -119,7 +119,6 @@ module.exports = class extends Generator {
       return;
     }
 
-    console.log(this.props);
     // Define widget variables
     this.widget = {};
     this.widget.widgetName = this.props.widgetName;
