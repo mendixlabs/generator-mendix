@@ -217,7 +217,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         "default",
         "Watches for changes and automatically creates an MPK file, as well as copying the changes to your deployment folder",
-        [ "watch" ]
+        [ "clean build", "watch" ]
     );
 
     grunt.registerTask(
