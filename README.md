@@ -14,7 +14,7 @@ If you want to see a short demo (this uses the older 1.x widget generator and on
 
 ## Prerequisites _(you only have to do this once)_
 
-First, you need to have [Node.js](https://nodejs.org/en/) installed. (We recommend a 4.x LTS version, the widget is tested against version 4 to 6). After that, you need to install Yeoman and the Mendix Widget generator:
+First, you need to have [Node.js](https://nodejs.org/en/) installed. (We recommend a 6.x LTS version, the generator is tested against 6). After that, you need to install Yeoman and the Mendix Widget generator:
 
 Open a command-line window (Press Win+R and type ``cmd`` or use Powershell)
 
