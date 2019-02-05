@@ -2,7 +2,6 @@ test/javasource/
 test/deployment/
 test/.classpath
 test/.project
-test/theme/
 test/userlib/
 test/.classpath
 test/.project
