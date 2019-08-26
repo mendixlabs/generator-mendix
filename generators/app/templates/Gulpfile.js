@@ -13,7 +13,8 @@ var gulp = require("gulp"),
     zip = require("gulp-zip"),
     del = require("del"),
     newer = require("gulp-newer"),
-    gutil = require("gulp-util"),
+    log = require('fancy-log'),
+    colors = require('ansi-colors'), 
     plumber = require("gulp-plumber"),
     gulpif = require("gulp-if"),
     jsonTransform = require("gulp-json-transform"),
@@ -49,12 +50,12 @@ gulp.task("compress", ["clean"], function () {
 gulp.task("copy:js", function () {
     return gulp.src(["./src/**/*.js"])
         .pipe(plumber(function (error) {
-            var msg = gutil.colors.red("Error");
+            var msg = colors.red("Error");
             if (error.fileName) {
-                msg += gutil.colors.red(" in ") + gutil.colors.cyan(error.fileName);
+                msg += colors.red(" in ") + colors.cyan(error.fileName);
             }
-            msg += " : " + gutil.colors.cyan(error.message);
-            gutil.log(msg);
+            msg += " : " + colors.cyan(error.message);
+            log(msg);
             this.emit("end");
         }))
         .pipe(jsValidate())
@@ -85,10 +86,10 @@ gulp.task("version:json", function () {
 
 gulp.task("icon", function (cb) {
     var icon = (typeof argv.file !== "undefined") ? argv.file : "./icon.png";
-    console.log("\nUsing this file to create a base64 string: " + gutil.colors.cyan(icon));
+    console.log("\nUsing this file to create a base64 string: " + colors.cyan(icon));
     gulp.src(icon)
         .pipe(intercept(function (file) {
-            console.log("\nCopy the following to your " + pkg.name + ".xml (after description):\n\n" + gutil.colors.cyan("<icon>") + file.contents.toString("base64") + gutil.colors.cyan("<\/icon>") + "\n");
+            console.log("\nCopy the following to your " + pkg.name + ".xml (after description):\n\n" + colors.cyan("<icon>") + file.contents.toString("base64") + colors.cyan("<\/icon>") + "\n");
             cb();
         }));
 });
