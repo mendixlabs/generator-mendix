@@ -32,7 +32,7 @@
     "gulp-plumber": "^1.2.1",
     "gulp-zip": "^5.0.0",
     "gulp-jsvalidate": "^4.0.0",
-    "widgetbuilder-gulp-helper": "https://github.com/tieniber/widgetbuilder-gulp-helper/archive/1.0.2.tar.gz",
+    "widgetbuilder-gulp-helper": "https://github.com/JelteMX/widgetbuilder-gulp-helper/archive/1.0.2.tar.gz",
     "yargs": "^14.0.0"
   },<% } %>
   "engines": {
