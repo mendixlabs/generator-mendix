@@ -1,6 +1,6 @@
 {
   "name": "generator-mendix",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "Mendix Widget generator",
   "license": "MIT",
   "main": "app/index.js",
