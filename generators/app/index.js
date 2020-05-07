@@ -73,9 +73,12 @@ module.exports = class extends Generator {
         done();
       }
     } else if (!extfs.isEmptySync(this.destinationRoot())) {
-      this.log(banner);
-      this.log(text.DIR_NOT_EMPTY_ERROR);
-      this.FINISHED = true;
+      var dirs = extfs.getDirsSync(this.destinationRoot());
+      if (!(dirs.length == 1 && dirs[0] == '.yo-repository')) {
+        this.log(banner);
+        this.log(text.DIR_NOT_EMPTY_ERROR);
+        this.FINISHED = true;
+      }
       done();
     } else {
       done();
