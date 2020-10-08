@@ -44,9 +44,9 @@ var pkg = require("./package.json"),
     gulp.task("build", gulp.series(["compress"]));
     
     gulp.task("default", gulp.series(['build'], function() {
-        gulp.watch("./src/**/*", ["compress"]);
-        gulp.watch("./src/**/*.js", ["copy:js"]);
-        gulp.watch("./src/**/*.html", ["copy:html"])
+        gulp.watch("./src/**/*", gulp.series(['compress']));
+        gulp.watch("./src/**/*.js", gulp.series(['copy:js']));
+        gulp.watch("./src/**/*.html", gulp.series(['copy:html']))
     }));
     
     gulp.task("compress", gulp.series(["clean"], function () {
